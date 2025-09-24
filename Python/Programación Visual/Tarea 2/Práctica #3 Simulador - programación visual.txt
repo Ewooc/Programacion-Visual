@@ -1,0 +1,38 @@
+http://www.objetos.unam.mx/fisica/circuitosElectricos
+
+todos los focos deben ser iguales
+considerar 3 tipos de material conductor (cobre, plata y acero)
+voltaje máximo de 400V
+widgets label entry button radiobutton
+
+
+Resistencia del cobre:
+x = 1.8550724637681159420289855072464
+1,68 × 10⁻⁸ Ω
+
+Resistencia de la plata:
+x = 
+1,59 x 10⁻⁸ Ω·m
+
+Resistenncia del acero:
+x = 
+
+
+################# Análisis #########################################
+Entradas:
+  V - Voltaje (0-400)
+  n - cantidad de focos (1/2/3)
+  M - material (cobre/plata/acero)
+  C - Tipo de conexión (serie/paralelo)
+también el valor de los focos (720/360/144 Ohms) (20/40/100 W){ignorar
+
+
+Salidas:
+  It - Corriente total
+   In - Corriente que circula en cada foco (caso en paralelo)
+   Vn - Voltaje presente en cada foco (caso en serie)
+  
+
+15 lineas para calcular corriente (algoritmo codificado en python)
+
+
