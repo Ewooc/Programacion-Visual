@@ -1,0 +1,20 @@
+Algoritmo Calcular_Equivalente
+	Leer R // Valor Resistencia inicial
+	Leer C // Tipo de conexión
+	Eq <- R // Se agrega directamente el primer valor
+	Leer R // Siguiente Resistencia
+	Mientras R <> 0 Hacer
+		Si C = "s" Entonces // Conexión en Serie
+			Eq <- Eq + R
+		SiNo
+			Si C = "p" Entonces // Conexión en Paralelo
+				Eq <- 1 / ( (1/Eq) + (1/R) )
+			SiNo
+				Escribir "Opción no válida"
+			Fin Si
+		Fin Si
+		Leer R // Siguiente Resistencia
+		Leer C // Tipo de conexión
+	Fin Mientras
+FinAlgoritmo
+

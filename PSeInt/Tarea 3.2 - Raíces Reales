@@ -1,0 +1,23 @@
+Algoritmo Raíces_Reales
+	rep <- ""
+	Mientras rep = "" Hacer
+		Leer a,b,c
+		d <- b^2-4*a*c
+		Si d > 0 Entonces
+			x1 <- (-b+d^(1/2))/(2*a)
+			x2 <- (-b-d^(1/2))/(2*a)
+			Escribir "2 Soluciones reales"
+			Escribir "x1 = " x1
+			Escribir "x2 = " x2
+		SiNo
+			Si d = 0 Entonces
+				x <- -b/(2*a)
+				Escribir "1 Solución real"
+				Escribir "x = " x
+			SiNo
+				Escribir "No hay soluciones reales"
+			Fin Si
+		Fin Si
+		Leer rep
+	Fin Mientras
+FinAlgoritmo

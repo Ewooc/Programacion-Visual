@@ -1,0 +1,13 @@
+Algoritmo Calcular_Impedancia
+	Leer componente
+	Si componente = "C" Entonces // Capacitor
+		Zimag <- -1 / (w * valor) // Regresa solo parte imaginaria
+	SiNo
+		Si componente = "L" Entonces // Inductor
+			Zimag <- w * valor // Regresa solo parte imaginaria
+		SiNo // Resistencia (Default)
+			Zreal <- valor // Regresa solo parte real
+		FinSi
+	FinSi
+FinAlgoritmo
+

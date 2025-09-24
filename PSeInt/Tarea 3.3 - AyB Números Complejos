@@ -1,0 +1,49 @@
+Algoritmo AyB_Números_Complejos
+	rep <- ""
+	Mientras rep = "" Hacer
+		Leer a1, a2
+		Leer op
+		Si op = "/" Entonces
+			Leer n
+			c <- a1
+			d <- a2
+			Mientras n > 1 Hacer
+				z1 <- (c*a1 - d*a2)
+				z2 <- (c*a2 + d*a1)
+				c <- z1
+				d <- z2
+				n = n-1
+			Fin Mientras
+			Si z2 > 0 Entonces
+				Escribir z1, "+", z2, "i"
+			SiNo
+				Escribir z1, z2, "i"
+			Fin Si
+		SiNo
+			Si op = "*" Entonces
+				Leer b1, b2
+				z1 <- (a1*b1 - a2*b2)
+				z2 <- (a1*b2 + a2*b1)
+				Si z2 > 0 Entonces
+					Escribir z1, "+", z2, "i"
+				SiNo
+					Escribir z1, z2, "i"
+				Fin Si
+			SiNo
+				Si op = "+" Entonces
+					Leer b1, b2
+					z1 <- a1+b1
+					z2 <- a2+b2
+					Si z2 > 0 Entonces
+						Escribir z1, "+", z2, "i"
+					SiNo
+						Escribir z1, z2, "i"
+					Fin Si
+				SiNo
+					Escribir "Operación Inválida"
+				Fin Si
+			Fin Si
+		Fin Si
+		Leer rep
+	Fin Mientras
+FinAlgoritmo

@@ -1,0 +1,14 @@
+Algoritmo Determinar_Prefijo
+	Si Eq < 1000 Entonces
+		pref = "" // Sin prefijo definido
+	SiNo
+		Req <- Eq / 1000
+		Si Eq < 1000 Entonces
+			pref = "K" // Prefijo Kilo
+		SiNo
+			Req <- Eq / 1000
+			pref <- "M" // Prefijo Mega
+		Fin Si
+	Fin Si
+FinAlgoritmo
+

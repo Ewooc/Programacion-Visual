@@ -1,0 +1,21 @@
+Algoritmo Mostrar_Resultado
+	modulo <- raiz( (Zreal)^2 + (Zimag)^2 ) // Obtener Módulo
+	Si Zreal = 0 Entonces // No hay componente real
+		fase = 90
+	SiNo // Obtener fase en grados
+		fase = (atan(Zimag / Zreal)) * (PI / 180)
+	FinSi
+	Si modulo < 1000 Entonces
+		pref = "" // Sin prefijo definido
+	SiNo
+		modulo <- modulo / 1000
+		Si modulo < 1000 Entonces
+			pref = "K" // Prefijo Kilo
+		SiNo
+			modulo <- modulo / 1000
+			pref <- "M" // Prefijo Mega
+		Fin Si
+	Fin Si
+	Escribir Resultado // Contiene Módulo, Fase y Prefijo
+FinAlgoritmo
+

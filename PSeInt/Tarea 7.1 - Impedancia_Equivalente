@@ -1,0 +1,21 @@
+Algoritmo Impedancia_Equivalente
+	Leer f
+	w <- 2 * PI * f
+	Leer valor
+	Zeq <- Calcular_Impedancia // Ingresando (w, valor) 
+	// Regresa parte real o imaginaria dependiendo del componente
+	Leer valor
+	Mientras valor <> 0 Hacer
+		Z <- Calcular_Impedancia // Ingresando (w, valor) 
+		// Regresa parte real o imaginaria dependiendo del componente
+		Leer conexion
+		Si conexion = "P" Entonces // Conexión en Paralelo
+			Zeq <- 1 / ((1 / Zeq) + (1 / Z))
+		SiNo // Conexión en Serie (Default)
+			Zeq = Zeq + Z
+		FinSi
+		Mostrar_Resultado // Realiza operaciones dentro de la función
+		Leer valor		
+	FinMientras
+FinAlgoritmo
+

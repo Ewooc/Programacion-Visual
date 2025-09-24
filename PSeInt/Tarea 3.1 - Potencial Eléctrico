@@ -1,0 +1,15 @@
+Algoritmo Potencial_Eléctrico
+	p <- 0
+	k <- 9*10^9
+	Leer n
+	Mientras n > 0 Hacer
+		Leer q
+		Leer cx
+		Leer cy
+		r <- raiz((cx^2)+(cy^2))
+		p <- p + (q / r)
+		n <- n-1
+	Fin Mientras
+	V <- k * p
+	Escribir V
+FinAlgoritmo
