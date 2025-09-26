@@ -26,11 +26,11 @@ def VerificarValor(): ##### Limita el voltaje de 0 a 400
 def Conexión_Y_Corriente(): ##### Realiza todas las verificaciones de datos y calcula la corriente
     ### Para el Material
     if Material.get() == 1: # Cobre
-        ResistenciaMaterial = 1.678e-8
+        ResistenciaMaterial = 1.71
     elif Material.get() == 2: # Plata
-        ResistenciaMaterial = 1.586e-8
+        ResistenciaMaterial = 1.55
     elif Material.get() == 3: # Acero
-        ResistenciaMaterial = 1.7e-7
+        ResistenciaMaterial = 72
     else:
         messagebox.showerror("Material?","No hay material seleccionado")
         return # Solo para que no siga con el proceso
@@ -56,7 +56,24 @@ def Conexión_Y_Corriente(): ##### Realiza todas las verificaciones de datos y c
     
     ### Calcular Corriente
     Corriente = Voltaje.get() / Req
-    Determinar_Prefijo(Corriente)
+    
+    ### Para Comprobar Potencia
+    Pfocos = (Corriente ** 2) * ResistenciaFocos.get() #Default = Serie
+    if TipoConexión.get() == 2: # Si está en Paralelo
+        Pfocos = (Voltaje.get() ** 2 / ResistenciaFocos.get())
+
+    Pnominal = 100 #Default = 144
+    if ResistenciaFocos.get() == 360:
+        Pnominal = 40
+    elif ResistenciaFocos.get() == 720:
+        Pnominal = 20
+    
+    if Pnominal < Pfocos:
+        messagebox.showwarning("Advertencia","La potencia es demasiada para los focos")
+        CorrienteI.set(0)
+        Prefijo.set("-")
+    else:
+        Determinar_Prefijo(Corriente)
 
 
 def Determinar_Prefijo(Valor): ##### Hace la conversión a notación de ingeniería
@@ -75,7 +92,7 @@ def Determinar_Prefijo(Valor): ##### Hace la conversión a notación de ingenier
     else: # Mayor a 1M
         NuevoValor = Valor / 1e6
         Prefijo.set("MA")
-    CorrienteI.set( round(NuevoValor,2) )
+    CorrienteI.set( round(NuevoValor,3) )
 
 
 def Salir(): ##### Cierra la ventana
@@ -99,9 +116,12 @@ Radiobutton(ventana,text="3",variable=CantidadFocos,value=3,font=("Cambria Math"
 
 Label(ventana,text="Resistencia de los Focos",font=("Corbel",16),bg="#BB54E4").place(x=280,y=10,width=230,height=30)
 Label(ventana,bg="#D09BE5").place(x=280,y=40,width=230,height=40)
-Radiobutton(ventana,text="144Ω",variable=ResistenciaFocos,value=144,font=("Cambria Math",12),bg="#CA6CEF").place(x=285,y=45,width=70,height=30)
-Radiobutton(ventana,text="360Ω",variable=ResistenciaFocos,value=360,font=("Cambria Math",12),bg="#CA6CEF").place(x=360,y=45,width=70,height=30)
-Radiobutton(ventana,text="720Ω",variable=ResistenciaFocos,value=720,font=("Cambria Math",12),bg="#CA6CEF").place(x=435,y=45,width=70,height=30)
+Radiobutton(ventana,text="100W",variable=ResistenciaFocos,value=144,font=("Cambria Math",12),bg="#CA6CEF").place(x=285,y=45,width=70,height=30)
+Label(ventana,text="144Ω",font=("Cambria Math",8)).place(x=285,y=80,width=70,height=10)
+Radiobutton(ventana,text="40W",variable=ResistenciaFocos,value=360,font=("Cambria Math",12),bg="#CA6CEF").place(x=360,y=45,width=70,height=30)
+Label(ventana,text="360Ω",font=("Cambria Math",8)).place(x=360,y=80,width=70,height=10)
+Radiobutton(ventana,text="20W",variable=ResistenciaFocos,value=720,font=("Cambria Math",12),bg="#CA6CEF").place(x=435,y=45,width=70,height=30)
+Label(ventana,text="720Ω",font=("Cambria Math",8)).place(x=435,y=80,width=70,height=10)
 
 Label(ventana,text="Tipo de Conexión:",font=("Corbel",16),bg="#DD637E").place(x=120,y=100,width=180,height=40)
 Label(ventana,bg="#E39DAD").place(x=300,y=100,width=210,height=40)
@@ -109,7 +129,7 @@ Radiobutton(ventana,text="Serie",variable=TipoConexión,value=1,font=("Corbel",1
 Radiobutton(ventana,text="Paralelo",variable=TipoConexión,value=2,font=("Corbel",12),bg="#EA7C94").place(x=403,y=108,width=91,height=24) # Paralelo = 2
 
 Label(ventana,text="Voltaje (V)",font=("Corbel",16),bg="#6392DD").place(x=10,y=160,width=110,height=30)
-Entry(ventana,textvariable=Voltaje,font=("Cambria Math",12),bg="#FFFFFF").place(x=130,y=160,width=160,height=30)
+Scale(ventana,variable=Voltaje,from_=0,to=400,orient=HORIZONTAL).place(x=130,y=152,width=160,height=60) ### Cambio de Entry a Scale
 
 ############### Salidas
 Label(ventana,text="Corriente (I)",font=("Corbel",16),bg="#FFEF3E").place(x=10,y=210,width=110,height=30)
@@ -126,6 +146,5 @@ Prefijo.set("-") # Para indicar el espacio destinado al elemento
 CantidadFocos.set(0) # Para la verificación de datos
 ResistenciaFocos.set(0) # Para la verificación de datos
 
-messagebox.showinfo("Te damos la bienvenida!","Gracias por utilizar la calculadora")
+#messagebox.showinfo("Te damos la bienvenida!","Gracias por utilizar la calculadora")
 ventana.mainloop()
-
