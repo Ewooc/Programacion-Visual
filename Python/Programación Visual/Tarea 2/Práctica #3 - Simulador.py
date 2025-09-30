@@ -129,7 +129,7 @@ Radiobutton(ventana,text="Serie",variable=TipoConexión,value=1,font=("Corbel",1
 Radiobutton(ventana,text="Paralelo",variable=TipoConexión,value=2,font=("Corbel",12),bg="#EA7C94").place(x=403,y=108,width=91,height=24) # Paralelo = 2
 
 Label(ventana,text="Voltaje (V)",font=("Corbel",16),bg="#6392DD").place(x=10,y=160,width=110,height=30)
-Scale(ventana,variable=Voltaje,from_=0,to=400,orient=HORIZONTAL).place(x=130,y=152,width=160,height=60) ### Cambio de Entry a Scale
+Scale(ventana,variable=Voltaje,from_=0,to=400,orient="horizontal").place(x=130,y=152,width=160,height=60) ### Cambio de Entry a Scale
 
 ############### Salidas
 Label(ventana,text="Corriente (I)",font=("Corbel",16),bg="#FFEF3E").place(x=10,y=210,width=110,height=30)
@@ -146,5 +146,5 @@ Prefijo.set("-") # Para indicar el espacio destinado al elemento
 CantidadFocos.set(0) # Para la verificación de datos
 ResistenciaFocos.set(0) # Para la verificación de datos
 
-#messagebox.showinfo("Te damos la bienvenida!","Gracias por utilizar la calculadora")
+messagebox.showinfo("Te damos la bienvenida!","Gracias por utilizar la calculadora")
 ventana.mainloop()

@@ -1,11 +1,11 @@
 Algoritmo Comprobar_Material
 	Si Material = "Plata" Entonces
-		Rmaterial <- 0.8
+		Rmaterial <- 1.55
 	SiNo
 		Si Material = "Acero" Entonces
-			Rmaterial <- 5
+			Rmaterial <- 72
 		SiNo // Por defecto: "Cobre"
-			Rmaterial <- 1
+			Rmaterial <- 1.77
 		FinSi
 	FinSi
 FinAlgoritmo
