@@ -1,3 +1,8 @@
+# Práctica #3 - Problema del Examen Quincenal #3
+# Woolfolk Cerecer Evan, 24331167
+# Programación Visual, Grupo O3A
+
+import math
 from tkinter import *
 from tkinter import messagebox
 
@@ -11,64 +16,47 @@ L = DoubleVar()
 C = IntVar()
 pref = StringVar()
 
+# Generar lista para verificación del calibre
+Calibre=[1.45, 1.291, 1.15, 1.02362, 0.9116, 0.8128, 0.7229, 0.6438, 0.5733, 0.5106, 0.4547, 0.4049, 0.3606, 0.3211, 0.2859, 0.2546]
+
 def Obtener_Resistividad(): # P
-    if M.get() == "plata":
+    Material = M.get().lower()
+    if Material == "plata":
         ValorP = 1.47e-8
-    elif M.get() == "cobre":
+    elif Material == "cobre":
         ValorP = 1.72e-8
-    elif M.get() == "oro":
+    elif Material == "oro":
         ValorP = 2.44e-8
-    elif M.get() == "aluminio":
+    elif Material == "aluminio":
         ValorP = 2.75e-8
-    elif M.get() == "tungsteno":
+    elif Material == "tungsteno":
         ValorP = 5.25e-8
-    elif M.get() == "acero":
+    elif Material == "acero":
         ValorP = 20e-8
-    elif M.get() == "plomo":
+    elif Material == "plomo":
         ValorP = 22e-8
-    elif M.get() == "mercurio":
+    elif Material == "mercurio":
         ValorP = 95e-8
-    elif M.get() == "manganina":
+    elif Material == "manganina":
         ValorP = 44e-8
-    elif M.get() == "constantán":
+    elif Material == "constantan":
         ValorP = 49e-8
-    elif M.get() == "nikelcromio":
+    elif Material == "nikelcromio":
         ValorP = 100e-8
-    elif M.get() == "":
+    elif Material == "":
         messagebox.showerror("No hay material","Introduzca un material")
         R.set(0)
         pref.set("-")
     else:
-        messagebox.showerror("Material no válido","Introduzca un material válido, en minúsculas")
+        messagebox.showerror("Material no válido","Introduzca un material válido")
         R.set(0)
         pref.set("-")
     return ValorP
 
 
 def Obtener_Área(): # A
-    if C.get() == 15:
-        ValorA = 1.45
-    elif C.get() == 16:
-        ValorA = 1.291
-    elif C.get() == 17:
-        ValorA = 1.15
-    elif C.get() == 18:
-        ValorA = 1.02362
-    elif C.get() == 19:
-        ValorA = 0.9116
-    elif C.get() == 20:
-        ValorA = 0.8128
-    elif C.get() == 21:
-        ValorA = 0.7229
-    elif C.get() == 22:
-        ValorA = 0.6438
-    elif C.get() == 23:
-        ValorA = 0.5733
-    elif C.get() == 24:
-        ValorA = 0.5106
-    elif C.get() == 25:
-        ValorA = 0.4547
-    ValorA = ValorA / 1000
+    RadioAlambre = Calibre[ C.get() - 15 ] / 2000 # Restar 15 para obtener posición en la lista
+    ValorA = math.pi * (RadioAlambre ** 2) # Calcular área
     return ValorA
 
 
@@ -96,11 +84,11 @@ def Determinar_Prefijo(Valor): ##### Hace la conversión a notación de ingenier
 
 
 def Mostrar_Materiales():
-    messagebox.showinfo("Lista de Materiales (poner en minúsculas)",
+    messagebox.showinfo("Lista de Materiales Disponibles",
                         "Plata, Cobre, Oro, " \
                         "Aluminio, Tungsteno, " \
                         "Acero, Plomo, Mercurio, " \
-                        "Manganina, Constantán, " \
+                        "Manganina, Constantan, " \
                         "Nikelcromio")
 
 
@@ -115,7 +103,7 @@ Label(ven,text="m",font=("Corbel",14),bg="#D09BE5").place(x=205,y=10,width=30,he
 Scale(ven,variable=L,from_=0,to=1000,resolution=0.001,orient=HORIZONTAL).place(x=240,y=2,width=289,height=60)
 
 Label(ven,text="Calibre",font=("Corbel",14),bg="#54E4AD").place(x=10,y=50,width=100,height=30)
-Scale(ven,variable=C,from_=15,to=25,orient=HORIZONTAL).place(x=117,y=42,width=167,height=60)
+Scale(ven,variable=C,from_=15,to=30,orient=HORIZONTAL).place(x=117,y=42,width=167,height=60)
 
 Label(ven,text="Material",font=("Corbel",14),bg="#A6E454").place(x=290,y=50,width=100,height=30)
 Entry(ven,textvariable=M,font=("Cambria Math",12),bg="#D4FAA3").place(x=400,y=50,width=100,height=30)
