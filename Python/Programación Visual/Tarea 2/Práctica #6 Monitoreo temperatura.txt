@@ -1,0 +1,21 @@
+simulador de sistema de monitoreo de Temperatura (SMT)
+
+sensor de temperatura que genera una señal digital
+señal de 8 bits (0-255) que se quiere convertir de 0 a 100 grados (conversión por regla de 3)
+tomar lectura, guardarla, después de 90 min, guardar otra
+ir calculando cuál es la máxima, mínima y promedio
+después de 24 horas, se detiene el proceso
+
+
+16 valores de temperatura medidas por día
+
+255 - 100
+ x  -  y
+
+
+00000010 - 2
+00001000 - 8
+01001001 - 73
+10011101 - 157
+01111011 - 123
+100000000 - 256
