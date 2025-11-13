@@ -243,8 +243,12 @@ def Aleatorio(): # Genera valores al azar
     pos = 0
     while pos < 16:
         item = instrucciones[pos]
-        item["bits"].set( bin( (random.randint(0,15)) )[2:].zfill(4) )
-        item["tiempo"].set( str(random.randint(1,5)/random.randint(1,2)) )
+        bit1 = str(random.randint(0,1))
+        bit2 = str(random.randint(0,1))
+        bit3 = str(random.randint(0,1))
+        bit4 = str(random.randint(0,1))
+        item["bits"].set( bit1 + bit2 + bit3 + bit4 )
+        item["tiempo"].set( str(random.randrange(10,50,5)/10) )
         pos += 1
 
 
